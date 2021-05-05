@@ -1,6 +1,6 @@
 from flask import Flask, send_file, request, Response, jsonify
 from PIL import Image
-from complexica.Complexica import colorize_image, imgPath
+from src.Complexica import colorize_image, imgPath
 import time
 import numpy
 

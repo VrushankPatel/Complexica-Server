@@ -18,7 +18,7 @@ imgPath = os.path.join(os.path.dirname(__file__), r'imgs/')
 if not os.path.isfile(model):
     print("Caffe model not found, downloading it from drive..")
     gdd.download_file_from_google_drive(
-        file_id="1Vhv1iuV8QiSBs1OgCxlC9hFfej-QwwOW", dest_path="complexica/model/colorizer_model.caffemodel")
+        file_id="1Vhv1iuV8QiSBs1OgCxlC9hFfej-QwwOW", dest_path="src/model/colorizer_model.caffemodel")
 
 print("Model Downloaded, executing program now............")
 

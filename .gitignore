@@ -2,3 +2,5 @@ env
 __pycache__
 colorizer_model.caffemodel
 *.jpg
+*.png
+*.jpeg
