@@ -4,6 +4,8 @@ import os
 import os.path
 from google_drive_downloader import GoogleDriveDownloader as gdd
 import time
+from PIL import Image
+import base64
 
 prototxt = r'model/layers.prototxt'
 model = r'model/colorizer_model.caffemodel'
@@ -33,6 +35,9 @@ net.getLayer(conv8).blobs = [np.full([1, 313], 2.606, dtype="float32")]
 
 
 def colorize_image(image, extension):
+    image = Image.open(image).convert('RGB')
+    image = np.array(image)
+    image = image[:, :, ::-1].copy()
     image = check_and_resize_image(image)
 
     scaled = image.astype("float32") / 255.0
@@ -59,10 +64,15 @@ def colorize_image(image, extension):
     colorized = np.clip(colorized, 0, 1)
 
     colorized = (255 * colorized).astype("uint8")
-    # fileName = str(int(time.time())) + f".{extension}"
-    fileName = getImgName() + f".{extension}"
-    cv2.imwrite(fileName, colorized)
-    return fileName
+
+    # generate name and save file
+    # fileName = getImgName() + f".{extension}"
+    # cv2.imwrite(fileName, colorized)
+
+    _, im_arr = cv2.imencode('.jpg', colorized)
+    im_bytes = im_arr.tobytes()
+    im_b64 = base64.b64encode(im_bytes)
+    return im_b64
 
 
 def convert_to_grayscale(frame):

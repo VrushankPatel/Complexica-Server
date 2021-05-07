@@ -24,6 +24,7 @@ Werkzeug = "==1.0.1"
 Flask-CLI = "==0.4.0"
 jsonpickle = "*"
 opencv-python-headless = "*"
+flask-cors = "*"
 
 [dev-packages]
 
