@@ -65,10 +65,6 @@ def colorize_image(image, extension):
 
     colorized = (255 * colorized).astype("uint8")
 
-    # generate name and save file
-    # fileName = getImgName() + f".{extension}"
-    # cv2.imwrite(fileName, colorized)
-
     _, im_arr = cv2.imencode('.jpg', colorized)
     im_bytes = im_arr.tobytes()
     im_b64 = base64.b64encode(im_bytes)
@@ -82,8 +78,6 @@ def convert_to_grayscale(frame):
     gray_3_channels[:, :, 1] = gray
     gray_3_channels[:, :, 2] = gray
     return gray_3_channels
-
-# if image is too large, we'll reduce the size to medium
 
 
 def check_and_resize_image(image: np.ndarray):

@@ -28,11 +28,6 @@ def uploadImage():
     response = make_response(
         send_file(colorized_file_name, mimetype="image/jpeg"))
     response.headers['Access-Control-Allow-Origin'] = '*'
-
-    # with open(colorized_file_name, "rb") as image_file:
-    #     encoded_image = base64.b64encode(image_file.read())
-    # return encoded_image, 200
-    # return send_file(colorized_file_name, mimetype="image/gif")
     return colorized_file_name
 
 
