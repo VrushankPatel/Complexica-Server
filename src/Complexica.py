@@ -34,7 +34,7 @@ net.getLayer(class8).blobs = [pts.astype("float32")]
 net.getLayer(conv8).blobs = [np.full([1, 313], 2.606, dtype="float32")]
 
 
-def colorize_image(image, extension):
+def colorize_image(image):
     image = Image.open(image).convert('RGB')
     image = np.array(image)
     image = image[:, :, ::-1].copy()

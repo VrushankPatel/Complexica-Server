@@ -20,14 +20,9 @@ def health_check():
 
 @app.route("/complexica/upload_image", methods=['POST'])
 def uploadImage():
-
     print(request.remote_addr)
     image = request.files['image']
-    extension = image.filename.split(".")[-1]
-    colorized_file_name = colorize_image(image, extension)
-    response = make_response(
-        send_file(colorized_file_name, mimetype="image/jpeg"))
-    response.headers['Access-Control-Allow-Origin'] = '*'
+    colorized_file_name = colorize_image(image)
     return colorized_file_name
 
 
