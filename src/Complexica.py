@@ -1,9 +1,7 @@
 import numpy as np
 import cv2
 import os
-import os.path
 from google_drive_downloader import GoogleDriveDownloader as gdd
-import time
 from PIL import Image
 import base64
 
@@ -89,14 +87,3 @@ def check_and_resize_image(image: np.ndarray):
             image, (width, height), interpolation=cv2.INTER_CUBIC)
         return image
     return image
-
-# only 5 images will be stored in storage, then it'll start overwriting them
-
-
-def getImgName():
-    global imgCounter
-    if imgCounter == 4:
-        imgCounter = 0
-        return str(imgCounter)
-    imgCounter += 1
-    return str(imgCounter)
