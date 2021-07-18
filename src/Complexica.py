@@ -4,6 +4,8 @@ import os
 from google_drive_downloader import GoogleDriveDownloader as gdd
 from PIL import Image
 import base64
+import datetime
+import logging
 
 prototxt = r'model/layers.prototxt'
 model = r'model/colorizer_model.caffemodel'
@@ -16,11 +18,13 @@ model = os.path.join(os.path.dirname(__file__), model)
 imgPath = os.path.join(os.path.dirname(__file__), r'imgs/')
 
 if not os.path.isfile(model):
-    print("Caffe model not found, downloading it from drive..")
+    logging.warning(
+        "Caffe model not found, downloading it from available resource..")
     gdd.download_file_from_google_drive(
         file_id="1Vhv1iuV8QiSBs1OgCxlC9hFfej-QwwOW", dest_path="src/model/colorizer_model.caffemodel")
-
-print("Model Downloaded, executing program now............")
+    logging.info("Model Downloaded, Engaging reactor now............")
+else:
+    logging.info("Model is available, Engaging reactor now............")
 
 net = cv2.dnn.readNetFromCaffe(prototxt, model)
 pts = np.load(points)
@@ -33,6 +37,7 @@ net.getLayer(conv8).blobs = [np.full([1, 313], 2.606, dtype="float32")]
 
 
 def colorize_image(image):
+    startTime = datetime.datetime.now()
     image = Image.open(image).convert('RGB')
     image = np.array(image)
     image = image[:, :, ::-1].copy()
@@ -45,7 +50,7 @@ def colorize_image(image):
     L = cv2.split(resized)[0]
     L -= 50
 
-    # print("[INFO] colorizing image...")
+    logging.info("[INFO] colorizing image...")
     net.setInput(cv2.dnn.blobFromImage(L))
     ab = net.forward()[0, :, :, :].transpose((1, 2, 0))
 
@@ -66,7 +71,13 @@ def colorize_image(image):
     _, im_arr = cv2.imencode('.jpg', colorized)
     im_bytes = im_arr.tobytes()
     im_b64 = base64.b64encode(im_bytes)
-    return im_b64
+    endTime = datetime.datetime.now()
+    totalTimeTaken = endTime - startTime
+    response = {
+        "image": im_b64.decode(),
+        "timeTaken": str(totalTimeTaken.seconds)
+    }
+    return response
 
 
 def convert_to_grayscale(frame):

@@ -5,6 +5,7 @@ from src.Complexica import colorize_image, imgPath
 from multiprocessing import Process, Value
 import time
 import numpy
+import logging
 import base64
 import requests
 from datetime import datetime
@@ -25,27 +26,10 @@ def health_check():
 
 @app.route("/complexica/upload_image", methods=['POST'])
 def uploadImage():
-    print(request.remote_addr)
     image = request.files['image']
-    colorized_file_name = colorize_image(image)
-    return colorized_file_name
-
-
-def record_loop():
-    day = int(time.gmtime().tm_mday)
-    while True:
-        print(day)
-        if day < 16:
-            requests.get(url1)
-            print("Sent request to URL")
-        else:
-            requests.get(url2)
-            print("Sent request to URL2")
-        time.sleep(30)
+    colorized_image = colorize_image(image)
+    return jsonify(colorized_image)
 
 
 if __name__ == "__main__":
-    # p = Process(target=record_loop)
-    # p.start()
     app.run(debug=True)
-    # p.join()
