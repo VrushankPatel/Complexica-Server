@@ -45,7 +45,7 @@ def record_loop():
 
 
 if __name__ == "__main__":
-    p = Process(target=record_loop)
-    p.start()
+    # p = Process(target=record_loop)
+    # p.start()
     app.run(debug=True)
-    p.join()
+    # p.join()
