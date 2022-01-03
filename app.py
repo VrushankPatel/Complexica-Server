@@ -10,8 +10,6 @@ import base64
 import requests
 from datetime import datetime
 
-url1 = "https://complexica.herokuapp.com/healthcheck"
-url2 = "https://complexica2.herokuapp.com/healthcheck"
 app = Flask(__name__)
 
 CORS(app)
@@ -19,12 +17,12 @@ CORS(app)
 cors = CORS(app, resources={r"/complexica/*": {"origins": "*"}})
 
 
-@app.route("/healthcheck", methods=["GET", 'POST'])
+@app.route("/api/healthcheck", methods=["GET", 'POST'])
 def health_check():
     return jsonify({"message": "Server is up and running"}), 200
 
 
-@app.route("/complexica/upload_image", methods=['POST'])
+@app.route("/api/upload_image", methods=['POST'])
 def uploadImage():
     image = request.files['image']
     colorized_image = colorize_image(image)
