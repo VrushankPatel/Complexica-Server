@@ -3,6 +3,7 @@ chardet==4.0.0
 click==7.1.2
 Flask==1.1.2
 Flask-CLI==0.4.0
+Flask-Cors==3.0.10
 googledrivedownloader==0.4
 gunicorn==20.1.0
 idna==2.10
@@ -14,6 +15,7 @@ opencv-python-headless==4.2.0.32
 Pillow==8.2.0
 PySimpleGUI==4.40.0
 requests==2.25.1
+six==1.16.0
 tk==0.1.0
 urllib3==1.26.4
 Werkzeug==1.0.1
