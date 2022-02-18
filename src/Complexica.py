@@ -25,6 +25,9 @@ imgPath = os.path.join(os.path.dirname(__file__), r'imgs/')
 #     logging.info("Model Downloaded, Engaging reactor now............")
 # else:
 #     logging.info("Model is available, Engaging reactor now............")
+import os
+print("checkingdirs")
+print(os.listdir("src/model"))
 
 net = cv2.dnn.readNetFromCaffe(prototxt, model)
 pts = np.load(points)
