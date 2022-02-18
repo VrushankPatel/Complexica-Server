@@ -28,7 +28,7 @@ imgPath = os.path.join(os.path.dirname(__file__), r'imgs/')
 import os
 print("checkingdirs")
 print(os.listdir("src/model"))
-
+print(os.path.exists(model));
 net = cv2.dnn.readNetFromCaffe(prototxt, model)
 pts = np.load(points)
 
