@@ -1,7 +1,6 @@
 import numpy as np
 import cv2
 import os
-from google_drive_downloader import GoogleDriveDownloader as gdd
 from PIL import Image
 import base64
 import datetime
