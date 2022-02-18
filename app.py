@@ -9,7 +9,7 @@ CORS(app)
 cors = CORS(app, resources={r"/complexica/*": {"origins": "*"}})
 
 
-@app.route("/api/healthcheck", methods=["GET", 'POST'])
+@app.route("/api/healthcheck", methods=['GET'])
 def health_check():
     return jsonify({"message": "Server is up and running"}), 200
 
