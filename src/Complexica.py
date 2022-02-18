@@ -42,7 +42,6 @@ def colorize_image(image):
     L = cv2.split(resized)[0]
     L -= 50
 
-    logging.info("[INFO] colorizing image...")
     net.setInput(cv2.dnn.blobFromImage(L))
     ab = net.forward()[0, :, :, :].transpose((1, 2, 0))
 
