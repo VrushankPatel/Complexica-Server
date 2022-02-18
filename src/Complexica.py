@@ -5,30 +5,20 @@ from google_drive_downloader import GoogleDriveDownloader as gdd
 from PIL import Image
 import base64
 import datetime
-import logging
 
 prototxt = r'model/layers.prototxt'
-model = r'src/model/colorizer_model.caffemodel'
+model = r'model/colorizer_model.caffemodel'
 points = r'model/pts_in_hull.npy'
 imgCounter = 0
 points = os.path.join(os.path.dirname(__file__), points)
 prototxt = os.path.join(os.path.dirname(__file__), prototxt)
+model = os.path.join(os.path.dirname(__file__), model)
 
-print(model);
 imgPath = os.path.join(os.path.dirname(__file__), r'imgs/')
 
-# if not os.path.isfile(model):
-#     logging.warning(
-#         "Caffe model not found, downloading it from available resource..")
-#     gdd.download_file_from_google_drive(
-#         file_id="1Vhv1iuV8QiSBs1OgCxlC9hFfej-QwwOW", dest_path="src/model/colorizer_model.caffemodel")
-#     logging.info("Model Downloaded, Engaging reactor now............")
-# else:
-#     logging.info("Model is available, Engaging reactor now............")
-import os
-print("checkingdirs")
-print(os.listdir("src/model"))
-print(os.path.exists(model));
+if os.path.isfile(model):
+    print("Model is available, Engaging reactor now............")
+
 net = cv2.dnn.readNetFromCaffe(prototxt, model)
 pts = np.load(points)
 
