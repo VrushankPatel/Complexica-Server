@@ -8,13 +8,13 @@ import datetime
 import logging
 
 prototxt = r'model/layers.prototxt'
-model = r'model/colorizer_model.caffemodel'
+model = r'src/model/colorizer_model.caffemodel'
 points = r'model/pts_in_hull.npy'
 imgCounter = 0
 points = os.path.join(os.path.dirname(__file__), points)
 prototxt = os.path.join(os.path.dirname(__file__), prototxt)
-model = os.path.join(os.path.dirname(__file__), model)
 
+print(model);
 imgPath = os.path.join(os.path.dirname(__file__), r'imgs/')
 
 # if not os.path.isfile(model):
