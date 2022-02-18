@@ -1,0 +1,10 @@
+>>> heroku login
+>>> heroku container:login
+
+use below command or try one after that
+>>> heroku create
+OR
+>>>  heroku git:remote -a {existing_app_name}
+
+>>> heroku container:push web
+>>> heroku container:release web
