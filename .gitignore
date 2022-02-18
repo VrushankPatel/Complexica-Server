@@ -1,7 +1,7 @@
 env
 __pycache__
-# colorizer_model.caffemodel
 *.jpg
 *.png
 *.jpeg
 *.DS_Store
+venv/

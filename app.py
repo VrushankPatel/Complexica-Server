@@ -15,7 +15,7 @@ def health_check():
 
 
 @app.route("/api/upload_image", methods=['POST'])
-def uploadImage():
+def upload_image():
     image = request.files['image']
     colorized_image = colorize_image(image)    
     return jsonify(colorized_image)

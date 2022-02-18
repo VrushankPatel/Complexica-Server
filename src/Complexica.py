@@ -29,7 +29,7 @@ net.getLayer(conv8).blobs = [np.full([1, 313], 2.606, dtype="float32")]
 
 
 def colorize_image(image):
-    startTime = datetime.datetime.now()
+    start_time = datetime.datetime.now()
     image = Image.open(image).convert('RGB')
     image = np.array(image)
     image = image[:, :, ::-1].copy()
@@ -45,9 +45,7 @@ def colorize_image(image):
     net.setInput(cv2.dnn.blobFromImage(L))
     ab = net.forward()[0, :, :, :].transpose((1, 2, 0))
 
-    ab = cv2.resize(ab, (image.shape[1], image.shape[0]))
-
-    data = cv2.imencode('.png', image)[1].tobytes()
+    ab = cv2.resize(ab, (image.shape[1], image.shape[0]))    
 
     image = convert_to_grayscale(image)
 
@@ -62,11 +60,11 @@ def colorize_image(image):
     _, im_arr = cv2.imencode('.jpg', colorized)
     im_bytes = im_arr.tobytes()
     im_b64 = base64.b64encode(im_bytes)
-    endTime = datetime.datetime.now()
-    totalTimeTaken = endTime - startTime
+    end_time = datetime.datetime.now()
+    total_time_taken = end_time - start_time
     response = {
         "image": im_b64.decode(),
-        "timeTaken": str(totalTimeTaken.seconds)
+        "timeTaken": str(total_time_taken.seconds)
     }
     return response
 
