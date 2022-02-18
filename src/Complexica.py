@@ -17,14 +17,14 @@ model = os.path.join(os.path.dirname(__file__), model)
 
 imgPath = os.path.join(os.path.dirname(__file__), r'imgs/')
 
-if not os.path.isfile(model):
-    logging.warning(
-        "Caffe model not found, downloading it from available resource..")
-    gdd.download_file_from_google_drive(
-        file_id="1Vhv1iuV8QiSBs1OgCxlC9hFfej-QwwOW", dest_path="src/model/colorizer_model.caffemodel")
-    logging.info("Model Downloaded, Engaging reactor now............")
-else:
-    logging.info("Model is available, Engaging reactor now............")
+# if not os.path.isfile(model):
+#     logging.warning(
+#         "Caffe model not found, downloading it from available resource..")
+#     gdd.download_file_from_google_drive(
+#         file_id="1Vhv1iuV8QiSBs1OgCxlC9hFfej-QwwOW", dest_path="src/model/colorizer_model.caffemodel")
+#     logging.info("Model Downloaded, Engaging reactor now............")
+# else:
+#     logging.info("Model is available, Engaging reactor now............")
 
 net = cv2.dnn.readNetFromCaffe(prototxt, model)
 pts = np.load(points)
