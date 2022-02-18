@@ -15,7 +15,7 @@
 
 ### Getting Started
 
-1. Clone tje project in your local dir.
+1. Clone the project in your local dir.
 2. Create virtual env by pipenv or venv and install all the requirements from requirements.txt.
 3. The Caffe model that will be used by server is available at below link.
 https://drive.google.com/file/d/1Vhv1iuV8QiSBs1OgCxlC9hFfej-QwwOW/view?usp=sharing
