@@ -1,12 +1,35 @@
-FROM python:3.7.10
+# Use the Python 3.12.3 bullseye image
+FROM python:3.12.3-bullseye
 
-WORKDIR /complexica
+# Set the working directory inside the container
+WORKDIR /app
 
-COPY requirements.txt requirements.txt
-RUN pip install -r requirements.txt
+# Install system dependencies for OpenCV and Pillow
+RUN apt-get update && apt-get install -y \
+    zlib1g-dev \
+    libjpeg-dev \
+    libpng-dev \
+    gcc \
+    libgl1 \
+    && rm -rf /var/lib/apt/lists/*
 
-COPY . .
+# Upgrade pip to the latest version
+RUN pip install --upgrade pip
 
-EXPOSE $PORT
+# Copy the requirements.txt file into the container
+COPY requirements.txt .
 
-CMD python -m flask run --host=0.0.0.0 --port=$PORT
+# Install the dependencies from requirements.txt
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Copy the src, web, app.py, and wsgi.py files into the container
+COPY src/ /app/src/
+COPY web/ /app/web/
+COPY app.py /app/
+COPY wsgi.py /app/
+
+# Expose port 9090
+EXPOSE 9090
+
+# Run the Python app
+CMD ["python", "app.py"]
