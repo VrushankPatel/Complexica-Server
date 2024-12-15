@@ -17,7 +17,7 @@
 
 1. Clone the project in your local dir.
 2. Create virtual env by pipenv or venv and install all the requirements from requirements.txt.
-3. The Caffe model that will be used by server is available at below link.
+3. If the caffemodel is not available in src/model, then the Caffe model that will be used by server is available at below link.
 https://drive.google.com/file/d/1Vhv1iuV8QiSBs1OgCxlC9hFfej-QwwOW/view?usp=sharing
 Download the model and put it in src/model directory.
 4. run the flask app by flask run.
