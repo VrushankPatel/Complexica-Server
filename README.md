@@ -21,9 +21,9 @@
 **Complexica-Server** is a Flask-based application designed to utilize machine learning models for image colorization. Leveraging Intel OpenVINO for optimized inference, the server takes grayscale images as input and outputs fully colorized images, enabling seamless integration of AI-powered image enhancement.
 
 ### Features
-- **Colorization Engine**: Trained using the Flickr30k dataset and fine-tuned for high-quality results.
-- **Optimized Deployment**: Powered by OpenVINO for efficient inference on Intel hardware.
-- **Ready for Deployment**: Easily deployable on local machines or Heroku with minimal configuration.
+- **Colorization Engine**: Trained using the Flickr30k dataset based fine-tuned model for high-quality results.
+- **Optimized Deployment**: Enhanced wsgi based build powered by OpenVINO for efficient inference on Intel hardware.
+- **Ready for Deployment**: Easily deployable on local machines with docker or Heroku with minimal configuration.
 
 ---
 
@@ -92,7 +92,7 @@ Refer to the `deploy-instructions.txt` file for step-by-step deployment on Herok
 ## API Endpoints
 
 ### Colorization Endpoint
-**POST** `/colorize`
+**POST** `/api/upload_image`
 - **Request**: Upload a grayscale image in `.jpg` or `.png` format.
 - **Response**: Returns a colorized image in the same format.
 
