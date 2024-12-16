@@ -19,11 +19,11 @@ jobs:
       - run:
           name: Build Docker Image
           command: |
-            docker build -t vrushankpatel5/complexica-server:1.0 .
+            docker build -t vrushankpatel5/complexica-server:latest .
       - run:
           name: Push Docker Image
           command: |
-            docker push vrushankpatel5/complexica-server:1.0
+            docker push vrushankpatel5/complexica-server:latest
 
 workflows:
   version: 2
