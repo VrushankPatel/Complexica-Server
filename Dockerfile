@@ -24,7 +24,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 # Copy the src, web, app.py, and wsgi.py files into the container
 COPY src/ /app/src/
-COPY web/ /app/web/
+COPY Web/ /app/Web/
 COPY app.py /app/
 COPY wsgi.py /app/
 

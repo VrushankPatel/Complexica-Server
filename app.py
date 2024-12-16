@@ -3,7 +3,7 @@ from flask_cors import CORS
 import os
 from src.Complexica import colorize_image
 
-app = Flask(__name__, static_folder="web", static_url_path="/")
+app = Flask(__name__, static_folder="Web", static_url_path="/")
 CORS(app)
 
 cors = CORS(app, resources={r"/complexica/*": {"origins": "*"}})
